@@ -5,7 +5,7 @@
     
   <url>
     <loc>/URL_Analysis/</loc>
-    <lastmod>2019-07-02T02:49:03.642Z</lastmod>
+    <lastmod>2019-07-02T03:03:35.743Z</lastmod>
     <data>
         <display>
         <title>URL解析</title>
@@ -118,6 +118,26 @@
 
     
   <url>
+    <loc>/rn_modal/</loc>
+    <lastmod>2019-07-02T01:35:56.255Z</lastmod>
+    <data>
+        <display>
+        <title>React Native Modal组件 Android覆盖状态栏</title>
+        <pubTime>2018-06-13T16:00:00.000Z</pubTime>
+        
+        <tag>react-native</tag>
+         
+         
+           
+             
+              <breadCrumb title="ReactNative" url="/categories/ReactNative/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/redux_understanding/</loc>
     <lastmod>2019-07-02T01:35:56.255Z</lastmod>
     <data>
@@ -158,19 +178,39 @@
 
     
   <url>
-    <loc>/rn_modal/</loc>
-    <lastmod>2019-07-02T01:35:56.255Z</lastmod>
+    <loc>/git_git_flow/</loc>
+    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
     <data>
         <display>
-        <title>React Native Modal组件 Android覆盖状态栏</title>
-        <pubTime>2018-06-13T16:00:00.000Z</pubTime>
+        <title>git-flow 工作流程</title>
+        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
         
-        <tag>react-native</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="ReactNative" url="/categories/ReactNative/"/>
+              <breadCrumb title="Git" url="/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/git_common_problem/</loc>
+    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
+    <data>
+        <display>
+        <title>Git 常用遇到的问题</title>
+        <pubTime>2017-07-11T16:00:00.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="/categories/Git/"/>
           
         </display>
     </data>
@@ -213,46 +253,6 @@
            
              
               <breadCrumb title="React" url="/categories/React/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/git_common_problem/</loc>
-    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
-    <data>
-        <display>
-        <title>Git 常用遇到的问题</title>
-        <pubTime>2017-07-11T16:00:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/git_git_flow/</loc>
-    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
-    <data>
-        <display>
-        <title>git-flow 工作流程</title>
-        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="/categories/Git/"/>
           
         </display>
     </data>
@@ -372,6 +372,30 @@
 
     
   <url>
+    <loc>/js_array_slice/</loc>
+    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
+    <data>
+        <display>
+        <title>手动实现数组的slice方法</title>
+        <pubTime>2017-06-20T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>slice</tag>
+         
+        <tag>Array</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/js_archetypal_chain/</loc>
     <lastmod>2019-07-02T01:35:56.251Z</lastmod>
     <data>
@@ -416,30 +440,6 @@
 
     
   <url>
-    <loc>/js_array_slice/</loc>
-    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
-    <data>
-        <display>
-        <title>手动实现数组的slice方法</title>
-        <pubTime>2017-06-20T16:00:00.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-        <tag>slice</tag>
-         
-        <tag>Array</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>/js_compare_data_type/</loc>
     <lastmod>2019-07-02T01:35:56.250Z</lastmod>
     <data>
@@ -452,30 +452,6 @@
         <tag>JS基础</tag>
          
         <tag>比较</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/js_promise/</loc>
-    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
-    <data>
-        <display>
-        <title>Promise 简单介绍</title>
-        <pubTime>2018-06-21T16:00:00.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-        <tag>promise</tag>
-         
-        <tag>ES6</tag>
          
          
            
@@ -512,18 +488,18 @@
 
     
   <url>
-    <loc>/js_inherit/</loc>
-    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <loc>/js_promise/</loc>
+    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
     <data>
         <display>
-        <title>JavaScript中的继承</title>
-        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
+        <title>Promise 简单介绍</title>
+        <pubTime>2018-06-21T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
-        <tag>面向对象</tag>
+        <tag>promise</tag>
          
-        <tag>继承</tag>
+        <tag>ES6</tag>
          
          
            
@@ -536,18 +512,16 @@
 
     
   <url>
-    <loc>/js_detection_data_type/</loc>
+    <loc>/js_dom_mapping_backflow/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
         <display>
-        <title>JS中检测数据类型的几种方式</title>
-        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
+        <title>DOM映射、回流和重绘</title>
+        <pubTime>2017-08-17T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
-        <tag>JS基础</tag>
-         
-        <tag>检测数据类型</tag>
+        <tag>DOM</tag>
          
          
            
@@ -584,6 +558,54 @@
 
     
   <url>
+    <loc>/js_detection_data_type/</loc>
+    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <data>
+        <display>
+        <title>JS中检测数据类型的几种方式</title>
+        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>JS基础</tag>
+         
+        <tag>检测数据类型</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/js_inherit/</loc>
+    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript中的继承</title>
+        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>面向对象</tag>
+         
+        <tag>继承</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/js_basics/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
@@ -606,16 +628,16 @@
 
     
   <url>
-    <loc>/js_dom_mapping_backflow/</loc>
-    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <loc>/css_layout_skills/</loc>
+    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
     <data>
         <display>
-        <title>DOM映射、回流和重绘</title>
-        <pubTime>2017-08-17T16:00:00.000Z</pubTime>
+        <title>css 布局技巧</title>
+        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
         
-        <tag>JS</tag>
+        <tag>CSS</tag>
          
-        <tag>DOM</tag>
+        <tag>布局技巧</tag>
          
          
            
@@ -645,28 +667,6 @@
            
              
               <breadCrumb title="CSS" url="/categories/CSS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/css_layout_skills/</loc>
-    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
-    <data>
-        <display>
-        <title>css 布局技巧</title>
-        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-        <tag>布局技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
           
         </display>
     </data>
