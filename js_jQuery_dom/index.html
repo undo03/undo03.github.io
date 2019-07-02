@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="K2ahaYZf7f" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS,jQuery,DOM操作," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="jQuery 是一个 “写的更少，但做的更多” 的轻量级 JavaScript 库. 基本上，学习到如何选取 HTML 元素,以及如何对它们执行类似隐藏、移动以及操作其内容等任务. 这篇文章用原生JS实现jQuery中大部分的DOM操作的方法.">
+<meta name="keywords" content="JS,jQuery,DOM操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原生JS实现jQuery中的DOM操作">
+<meta property="og:url" content="/js_jQuery_dom/index.html">
+<meta property="og:site_name" content="Undo">
+<meta property="og:description" content="jQuery 是一个 “写的更少，但做的更多” 的轻量级 JavaScript 库. 基本上，学习到如何选取 HTML 元素,以及如何对它们执行类似隐藏、移动以及操作其内容等任务. 这篇文章用原生JS实现jQuery中大部分的DOM操作的方法.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-02T01:35:56.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原生JS实现jQuery中的DOM操作">
+<meta name="twitter:description" content="jQuery 是一个 “写的更少，但做的更多” 的轻量级 JavaScript 库. 基本上，学习到如何选取 HTML 元素,以及如何对它们执行类似隐藏、移动以及操作其内容等任务. 这篇文章用原生JS实现jQuery中大部分的DOM操作的方法.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/js_jQuery_dom/"/>
+
+
+
+
+
+  <title>原生JS实现jQuery中的DOM操作 | Undo</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-137390538-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cff78284d6ff310b4a8db47044574374";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Undo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Move fast and break things.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/js_jQuery_dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Undo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Undo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">原生JS实现jQuery中的DOM操作</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T00:00:00+08:00">
+                2017-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/js_jQuery_dom/" class="leancloud_visitors" data-flag-title="原生JS实现jQuery中的DOM操作">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>jQuery</code> 是一个 <code>“写的更少，但做的更多”</code> 的轻量级 <code>JavaScript</code> 库.</p>
+<p>基本上，学习到如何选取 <code>HTML</code> 元素,以及如何对它们执行类似隐藏、移动以及操作其内容等任务.</p>
+<p>这篇文章用原生JS实现<code>jQuery</code>中大部分的<code>DOM操作</code>的方法.</p>
+<a id="more"></a>
+<p>为了方便判断浏览器兼容性, 用一下 <code>flag</code> 的值代表是否是 <code>IE8</code>以上浏览器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> flag = <span class="string">'getComputedStyle'</span> <span class="keyword">in</span> <span class="built_in">window</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="1-win-操作浏览器盒子模型"><a href="#1-win-操作浏览器盒子模型" class="headerlink" title="1. win 操作浏览器盒子模型"></a>1. win 操作浏览器盒子模型</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//-&gt;win:一个有关于操作浏览器盒子模型的方法</span></span><br><span class="line"><span class="comment">//如果只传递了attr没有传递value,默认的意思是“获取”</span></span><br><span class="line"><span class="comment">//如果两个参数都传递了,意思是“设置”</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">win</span>(<span class="params">attr, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">'undefined'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">document</span>.documentElement[attr] || <span class="built_in">document</span>.body[attr];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.documentElement[attr] = value;</span><br><span class="line">    <span class="built_in">document</span>.body[attr] = value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-offset-获取元素相对于body的偏移量"><a href="#2-offset-获取元素相对于body的偏移量" class="headerlink" title="2. offset 获取元素相对于body的偏移量"></a>2. offset 获取元素相对于body的偏移量</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* offset：Gets the offset of the current element distance BODY</span></span><br><span class="line"><span class="comment">* @parameter：</span></span><br><span class="line"><span class="comment">*   curEle[object]：current element</span></span><br><span class="line"><span class="comment">* @return：</span></span><br><span class="line"><span class="comment">*   [object]：&#123;top:xxx,left:xxx&#125;</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-23 16:43</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">offset</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> par = curEle.offsetParent, totalLeft = curEle.offsetLeft, totalTop = curEle.offsetTop;</span><br><span class="line">    <span class="keyword">while</span> (par) &#123;</span><br><span class="line">        <span class="keyword">if</span> (navigator.userAgent.indexOf(<span class="string">'MSIE 8.0'</span>) === <span class="number">-1</span>) &#123;</span><br><span class="line">            totalLeft += par.clientLeft;</span><br><span class="line">            totalTop += par.clientTop;</span><br><span class="line">        &#125;</span><br><span class="line">        totalLeft += par.offsetLeft;</span><br><span class="line">        totalTop += par.offsetTop;</span><br><span class="line"></span><br><span class="line">        par = par.offsetParent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="attr">left</span>: totalLeft, <span class="attr">top</span>: totalTop&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>offset</code>: 等同于<code>jQuery</code>中的<code>offset</code>方法,实现获取页面中任意一个元素,距离body的偏移(包含左偏移和上偏移),不管当前元素的父级参照物是谁,获取的结果是一个对象 <code>{left:距离BODY的左偏移,top:距离BODY的上偏移}</code></p>
+<p>在标准的<code>IE8浏览器</code>中,使用<code>offsetLeft/offsetTop</code>其实是把父级参照物的边框已经算在内了,所以我们不需要自己在单独的加边框了</p>
+<h3 id="3-getCss-获取元素的style属性"><a href="#3-getCss-获取元素的style属性" class="headerlink" title="3. getCss 获取元素的style属性"></a>3. getCss 获取元素的style属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* getCss：Gets the value of the specific style property for the current element</span></span><br><span class="line"><span class="comment">* @parameter：</span></span><br><span class="line"><span class="comment">*   curEle[object]：current element</span></span><br><span class="line"><span class="comment">*   attr[string]：style properties of elements</span></span><br><span class="line"><span class="comment">* @return：</span></span><br><span class="line"><span class="comment">*   Style attribute values for elements</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-23 12:29</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCss</span>(<span class="params">curEle, attr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> val = <span class="literal">null</span>, reg = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'getComputedStyle'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        val = <span class="built_in">window</span>.getComputedStyle(curEle, <span class="literal">null</span>)[attr];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;    <span class="comment">//IE6~8</span></span><br><span class="line">        <span class="keyword">switch</span> (attr) &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'filter'</span>:</span><br><span class="line">            <span class="keyword">case</span> <span class="string">'opacity'</span>:</span><br><span class="line">                val = curEle.currentStyle[<span class="string">'filter'</span>];</span><br><span class="line">                <span class="comment">//reg = /^alpha\(opacity=(\d+(?:\.\d+)?)\)$/i;</span></span><br><span class="line">                reg = <span class="regexp">/^alpha\(opacity=(.+)\)$/i</span>;</span><br><span class="line">                val = reg.test(val) ? <span class="built_in">RegExp</span>.$<span class="number">1</span> / <span class="number">100</span> : <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span> :</span><br><span class="line">                val = curEle.currentStyle[attr];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    reg = <span class="regexp">/^(?:-?\d+(?:\.\d+)?)(?:px|pt|rem|em)?$/i</span>;</span><br><span class="line">    <span class="keyword">return</span> reg.test(val) ? <span class="built_in">parseFloat</span>(val) : val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是兼容写法, 新版浏览器支持<code>getComputedStyle</code>获取更方便, <code>currentStyle</code> 需要对透明度做特殊处理, 最后为了和<code>jQuery</code>保持一致去单位</p>
+<h3 id="4-setCss-为元素设置style属性"><a href="#4-setCss-为元素设置style属性" class="headerlink" title="4. setCss 为元素设置style属性"></a>4. setCss 为元素设置style属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCss</span>(<span class="params">curEle, attr, value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (attr === <span class="string">'opacity'</span>) &#123;</span><br><span class="line">        curEle.style[<span class="string">'opacity'</span>] = value;</span><br><span class="line">        curEle.style[<span class="string">'filter'</span>] = <span class="string">'alpha(opacity='</span> + value * <span class="number">100</span> + <span class="string">')'</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (attr === <span class="string">'float'</span>) &#123;</span><br><span class="line">        curEle.style[<span class="string">'cssFloat'</span>] = value;</span><br><span class="line">        curEle.style[<span class="string">'styleFloat'</span>] = value;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//给部分样式属性做特殊处理,如果传递进来的样式属性值没有加单位,我们默认给补充px单位</span></span><br><span class="line">    <span class="keyword">var</span> reg = <span class="regexp">/^(?:width|height|(?:(?:margin|padding)?(?:top|right|bottom|left)))$/i</span>;</span><br><span class="line">    <span class="keyword">if</span> (reg.test(attr)) &#123;</span><br><span class="line">        !<span class="built_in">isNaN</span>(value) ? value += <span class="string">'px'</span> : <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    curEle.style[attr] = value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同样为了兼容各个浏览器需要对 <code>opacity</code>,<code>float</code>做特殊处理,需要对带单位的属性值添加单位</p>
+<h3 id="5-setGroupCss-为元素设置一组style"><a href="#5-setGroupCss-为元素设置一组style" class="headerlink" title="5. setGroupCss 为元素设置一组style"></a>5. setGroupCss 为元素设置一组style</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">setGroupCss</span>(<span class="params">curEle, styleCollection</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//循环传递进来的样式集合,调取SETCSS方法,给当前元素逐一设置样式即可</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> styleCollection) &#123;</span><br><span class="line">        <span class="keyword">if</span> (styleCollection.hasOwnProperty(key)) &#123;</span><br><span class="line">            setCss(curEle, key, styleCollection[key]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-css"><a href="#6-css" class="headerlink" title="6. css"></a>6. css</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">css</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length &gt;= <span class="number">3</span>) &#123;</span><br><span class="line">        setCss.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">arguments</span>.length === <span class="number">2</span> &amp;&amp; <span class="keyword">typeof</span> <span class="built_in">arguments</span>[<span class="number">1</span>] === <span class="string">'object'</span>) &#123;</span><br><span class="line">        setGroupCss.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> getCss.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将 getCss setCss setGroupCss 整合 , 达到<code>jQuery</code>中<code>css</code>相同的效果</p>
+<h3 id="7-children-获取元素的子元素"><a href="#7-children-获取元素的子元素" class="headerlink" title="7. children 获取元素的子元素"></a>7. children 获取元素的子元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">children</span>(<span class="params">curEle, tagName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ary = [];</span><br><span class="line">    <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">        <span class="keyword">var</span> nodeList = curEle.childNodes;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> curNode = <span class="built_in">arguments</span>[i];</span><br><span class="line">            curNode.nodeType === <span class="number">1</span> ? ary[ary.length] = curNode : <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        nodeList = <span class="literal">null</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        ary = <span class="built_in">Array</span>.prototype.slice.call(curEle.children);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> tagName === <span class="string">'string'</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; ary.length; j++) &#123;</span><br><span class="line">            <span class="keyword">var</span> curEleNode = ary[j];</span><br><span class="line">            <span class="keyword">if</span> (curEleNode.nodeName !== tagName.toUpperCase()) &#123;</span><br><span class="line">                ary.splice(j, <span class="number">1</span>);</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="8-prev-获取元素的上一个哥哥元素"><a href="#8-prev-获取元素的上一个哥哥元素" class="headerlink" title="8. prev 获取元素的上一个哥哥元素"></a>8. prev 获取元素的上一个哥哥元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* prev：获取当前元素的上一个哥哥元素节点(兼容所有浏览器)</span></span><br><span class="line"><span class="comment">* @parameter</span></span><br><span class="line"><span class="comment">*       curEle:current element 当前操作的元素</span></span><br><span class="line"><span class="comment">* @return</span></span><br><span class="line"><span class="comment">*       上一个哥哥元素节点或者是null(没有返回null)</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-08 11:18</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prev</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="keyword">return</span> curEle.previousElementSibling;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> pre = curEle.previousSibling;</span><br><span class="line">    <span class="keyword">if</span> (pre &amp;&amp; pre.nodeType !== <span class="number">1</span>) &#123;</span><br><span class="line">        pre = pre.previousSibling;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pre;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="9-prevAll-获取元素的所有哥哥元素"><a href="#9-prevAll-获取元素的所有哥哥元素" class="headerlink" title="9. prevAll 获取元素的所有哥哥元素"></a>9. prevAll 获取元素的所有哥哥元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/*</span></span><br><span class="line"><span class="comment">* prevAll：获取当前元素的所有哥哥元素节点(兼容所有浏览器)</span></span><br><span class="line"><span class="comment">* @parameter</span></span><br><span class="line"><span class="comment">*       curEle:current element 当前操作的元素</span></span><br><span class="line"><span class="comment">* @return</span></span><br><span class="line"><span class="comment">*       所有的哥哥元素节点或者是null(没有返回null)</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-08 11:18</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prevAll</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ary = [], pre = prev(curEle);</span><br><span class="line">    <span class="keyword">while</span> (pre) &#123;</span><br><span class="line">        ary.push(pre);</span><br><span class="line">        pre = prev(pre);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="10-next-获取元素的下一个弟弟元素"><a href="#10-next-获取元素的下一个弟弟元素" class="headerlink" title="10. next 获取元素的下一个弟弟元素"></a>10. next 获取元素的下一个弟弟元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* next：获取当前元素的下一个弟弟元素节点(兼容所有浏览器)</span></span><br><span class="line"><span class="comment">* @parameter</span></span><br><span class="line"><span class="comment">*       curEle:current element 当前操作的元素</span></span><br><span class="line"><span class="comment">* @return</span></span><br><span class="line"><span class="comment">*       下一个弟弟元素节点或者是null(没有返回null)</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-08 11:18</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="keyword">return</span> curEle.nextElementSibling;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> nex = curEle.nextSibling;</span><br><span class="line">    <span class="keyword">if</span> (nex &amp;&amp; nex.nodeType !== <span class="number">1</span>) &#123;</span><br><span class="line">        nex = nex.nextSibling;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="11-nextAll-获取元素的所有弟弟元素"><a href="#11-nextAll-获取元素的所有弟弟元素" class="headerlink" title="11. nextAll 获取元素的所有弟弟元素"></a>11. nextAll 获取元素的所有弟弟元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* nextAll：获取当前元素的所有弟弟元素节点(兼容所有浏览器)</span></span><br><span class="line"><span class="comment">* @parameter</span></span><br><span class="line"><span class="comment">*       curEle:current element 当前操作的元素</span></span><br><span class="line"><span class="comment">* @return</span></span><br><span class="line"><span class="comment">*       所有的弟弟元素节点或者是null(没有返回null)</span></span><br><span class="line"><span class="comment">* By Team on 2017-04-08 11:18</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextAll</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ary = [], nex = next(curEle);</span><br><span class="line">    <span class="keyword">while</span> (nex) &#123;</span><br><span class="line">        ary.push(nex);</span><br><span class="line">        nex = next(nex);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="12-sibling-获取元素相邻元素"><a href="#12-sibling-获取元素相邻元素" class="headerlink" title="12. sibling 获取元素相邻元素"></a>12. sibling 获取元素相邻元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sibling</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> pre = prev(curEle);</span><br><span class="line">    <span class="keyword">var</span> nex = next(curEle);</span><br><span class="line">    <span class="keyword">var</span> ary = [];</span><br><span class="line">    pre ? ary.push(pre) : <span class="literal">null</span>;</span><br><span class="line">    nex ? ary.push(nex) : <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="13-siblings-获取元素的所有兄弟元素"><a href="#13-siblings-获取元素的所有兄弟元素" class="headerlink" title="13. siblings 获取元素的所有兄弟元素"></a>13. siblings 获取元素的所有兄弟元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">siblings</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.prevAll(curEle).concat(nextAll(curEle));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-index-获取元素所在的索引"><a href="#14-index-获取元素所在的索引" class="headerlink" title="14. index 获取元素所在的索引"></a>14. index 获取元素所在的索引</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">index</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> prevAll(curEle).length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="15-firstChild-获取第一个子节点"><a href="#15-firstChild-获取第一个子节点" class="headerlink" title="15. firstChild 获取第一个子节点"></a>15. firstChild 获取第一个子节点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">firstChild</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> chs = children(curEle);</span><br><span class="line">    <span class="keyword">return</span> chs.length &gt; <span class="number">0</span> ? chs[<span class="number">0</span>] : <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="16-lastChild-获取最后一个子节点"><a href="#16-lastChild-获取最后一个子节点" class="headerlink" title="16. lastChild 获取最后一个子节点"></a>16. lastChild 获取最后一个子节点</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastChild</span>(<span class="params">curEle</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> chs = children(curEle);</span><br><span class="line">        <span class="keyword">return</span> chs.length &gt; <span class="number">0</span> ? chs[chs.length - <span class="number">1</span>] : <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="17-append-向指定容器的末尾追加元素"><a href="#17-append-向指定容器的末尾追加元素" class="headerlink" title="17. append 向指定容器的末尾追加元素"></a>17. append 向指定容器的末尾追加元素</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">append</span>(<span class="params">newEle, container</span>) </span>&#123;</span><br><span class="line">    container.appendChild(newEle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="18-prepend-向指定容器的开头追加元素"><a href="#18-prepend-向指定容器的开头追加元素" class="headerlink" title="18. prepend 向指定容器的开头追加元素"></a>18. prepend 向指定容器的开头追加元素</h3><p>把新的元素添加到容器中第一个子元素节点的前面,如果一个元素子节点都没有,就放在末尾即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">prepend</span>(<span class="params">newEle, container</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fir = firstChild(container);</span><br><span class="line">    <span class="keyword">if</span> (fir) &#123;</span><br><span class="line">        container.insertBefore(newEle, fir);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    container.appendChild(curEle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="19-insertBefore-把新元素追加到指定元素的前面"><a href="#19-insertBefore-把新元素追加到指定元素的前面" class="headerlink" title="19. insertBefore 把新元素追加到指定元素的前面"></a>19. insertBefore 把新元素追加到指定元素的前面</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertBefore</span>(<span class="params">newEle, oldEle</span>) </span>&#123;</span><br><span class="line">    oldEle.parentNode.insertBefore(newEle, oldEle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="20-insertAfter-把新元素追加到指定元素的后面"><a href="#20-insertAfter-把新元素追加到指定元素的后面" class="headerlink" title="20. insertAfter 把新元素追加到指定元素的后面"></a>20. insertAfter 把新元素追加到指定元素的后面</h3><p>相当于追加到oldEle弟弟元素的前面,如果弟弟不存在,也就是当前元素已经是最后一个了,我们把新的元素放在最末尾即可</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">insertAfter</span>(<span class="params">newEle, oldEle</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> nex = next(oldEle);</span><br><span class="line">    <span class="keyword">if</span> (nex) &#123;</span><br><span class="line">        oldEle.parentNode.insertBefore(newEle, nex);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    oldEle.parentNode.appendChild(newEle);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="21-hasClass-判断元素是否有某个class"><a href="#21-hasClass-判断元素是否有某个class" class="headerlink" title="21. hasClass 判断元素是否有某个class"></a>21. hasClass 判断元素是否有某个class</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hasClass</span>(<span class="params">curEle, cName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'\\b'</span> + cName + <span class="string">'\\b'</span>).test(curEle.className);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="22-addClass-为元素添加class"><a href="#22-addClass-为元素添加class" class="headerlink" title="22. addClass 为元素添加class"></a>22. addClass 为元素添加class</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addClass</span>(<span class="params">curEle, strClass</span>) </span>&#123;</span><br><span class="line">    strClass = strClass.replace(<span class="regexp">/(^ +| +$)/g</span>, <span class="string">""</span>).split(<span class="regexp">/ +/g</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = strClass.length; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> curClass = strClass[i];</span><br><span class="line">        <span class="keyword">if</span> (!hasClass(curEle, curClass)) &#123;</span><br><span class="line">            curEle.className += <span class="string">" "</span> + curClass;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="23-removeClass-移除元素中的class"><a href="#23-removeClass-移除元素中的class" class="headerlink" title="23. removeClass 移除元素中的class"></a>23. removeClass 移除元素中的class</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">removeClass</span>(<span class="params">curEle, strClass</span>) </span>&#123;</span><br><span class="line">    strClass = strClass.replace(<span class="regexp">/(^ +| +$)/g</span>, <span class="string">""</span>).split(<span class="regexp">/ +/g</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, len = strClass.length; i &lt; len; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> curClass = strClass[i];</span><br><span class="line">        <span class="keyword">var</span> reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"(^| +)"</span> + curClass + <span class="string">"( +|$)"</span>, <span class="string">"g"</span>);</span><br><span class="line">        hasClass(curEle, curClass) ? curEle.className = curEle.className.replace(<span class="regexp">/ /g</span>,<span class="string">'  '</span>).replace(reg, <span class="string">" "</span>) : <span class="literal">null</span>;</span><br><span class="line">        curEle.className = curEle.className.replace(<span class="regexp">/(^ +| +$)/</span>, <span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="24-toggleClass-切换元素的class"><a href="#24-toggleClass-切换元素的class" class="headerlink" title="24. toggleClass 切换元素的class"></a>24. toggleClass 切换元素的class</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleClass</span>(<span class="params">curEle, strClass</span>) </span>&#123;</span><br><span class="line">    strClass = strClass.replace(<span class="regexp">/(^ +| +$)/g</span>, <span class="string">""</span>).split(<span class="regexp">/ +/g</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; strClass.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> curClass = strClass[i];</span><br><span class="line">        hasClass(curEle, curClass) ? removeClass(curEle, curClass) : addClass(curEle, curClass);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="25-getElementsByClass"><a href="#25-getElementsByClass" class="headerlink" title="25. getElementsByClass"></a>25. getElementsByClass</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClass</span>(<span class="params">strClass, context</span>) </span>&#123;</span><br><span class="line">    context = context || <span class="built_in">document</span>;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        <span class="keyword">return</span> listToArray(context.getElementsByClassName(strClass));</span><br><span class="line">    &#125;</span><br><span class="line">    strClass = strClass.replace(<span class="regexp">/(^ +| +$)/g</span>, <span class="string">''</span>).replace(<span class="regexp">/ +/g</span>, <span class="string">'@@'</span>).replace(<span class="regexp">/(?:^|@)([\w-]+)(?:@|$)/g</span>, <span class="string">'(?=.*(^| +)$1( +|$).*)'</span>);</span><br><span class="line">    <span class="keyword">var</span> ary = [], reg = <span class="keyword">new</span> <span class="built_in">RegExp</span>(strClass),</span><br><span class="line">        nodeList = context.getElementsByTagName(<span class="string">'*'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodeList.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> curNode = nodeList[i];</span><br><span class="line">        reg.test(curNode.className) ? ary[ary.length] = curNode : <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正则的方式比较简单,但是正则不容易写出来,还有其他的方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getElementsByClass</span>(<span class="params">strClass, context</span>) </span>&#123;</span><br><span class="line">    context = context || <span class="built_in">document</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">'getComputedStyle'</span> <span class="keyword">in</span> <span class="built_in">window</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> [].slice.call(context.getElementsByClassName(strClass));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ary = [], strClassAry = strClass.replace(<span class="regexp">/(^ +| +$)/g</span>, <span class="string">''</span>).split(<span class="regexp">/ +/g</span>);</span><br><span class="line">    <span class="keyword">var</span> nodeList = context.getElementsByTagName(<span class="string">'*'</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; nodeList.length; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> curNode = nodeList[i];</span><br><span class="line">        <span class="keyword">var</span> isTrue = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; strClassAry.length; j++) &#123;</span><br><span class="line">            <span class="keyword">var</span> curName = strClassAry[j];</span><br><span class="line">            <span class="keyword">if</span> (!hasClass(curNode, curName)) &#123;</span><br><span class="line">                isTrue = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (isTrue) &#123;</span><br><span class="line">            ary.push(curNode);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ary;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上实现了大部分的常用的DOM操作的兼容写法,目的不在于去实现<code>jQuery</code>中API,而是从原理上理解<code>jQuery API</code>的实现原理,锻炼个人的编程能力,升华编程思想.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------  本文结束  <i class="fa fa-paw"></i> 感谢您的阅读  -------------</div>
+    
+</div>
+
+      
+    </div>
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/JS/" <i class="fa fa-tag"></i> JS</a>
+        
+          <a href="/tags/jQuery/" <i class="fa fa-tag"></i> jQuery</a>
+        
+          <a href="/tags/DOM操作/" <i class="fa fa-tag"></i> DOM操作</a>
+        
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文标题:&nbsp;&nbsp;</strong>
+    <a href="/js_jQuery_dom/">原生JS实现jQuery中的DOM操作</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Undo
+  </li>
+  <li class="post-copyright-author">
+    <strong>发布时间:&nbsp;&nbsp;</strong>
+    2017-06-25
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.songqibin.cn/js_jQuery_dom/" title="原生JS实现jQuery中的DOM操作">http://www.songqibin.cn/js_jQuery_dom/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+<p style="font-size:16px;font-weight:600;margin: 20px 0 0 0;">好友链接:</p>
+<ul class="post-copyright" style="margin-top:10px;">
+  <li class="post-copyright-author">
+    <strong>ice_point：</strong>
+    <a href="https://www.lishuaishuai.com/" target="_blank" title="ice_point的博客">https://www.lishuaishuai.com</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>lenore：</strong>
+    <a href="https://www.lenore412.com/" target="_blank" title="lenore的博客">https://www.lenore412.com</a>
+  </li>
+</ul>
+
+      </div>
+    
+  
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/js_archetypal_chain/" rel="next" title="面向对象原型链和原型链查找机制">
+                <i class="fa fa-chevron-left"></i> 面向对象原型链和原型链查找机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/git_basis/" rel="prev" title="Git 常用操作">
+                Git 常用操作 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzYyNS8xNDE1Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  
+
+  
+    <div class="sidebar-toggle">
+      <div class="sidebar-toggle-line-wrap">
+        <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
+    </div>
+  
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          文章目录
+        </li>
+      </ul>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-win-操作浏览器盒子模型"><span class="nav-text">1. win 操作浏览器盒子模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-offset-获取元素相对于body的偏移量"><span class="nav-text">2. offset 获取元素相对于body的偏移量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-getCss-获取元素的style属性"><span class="nav-text">3. getCss 获取元素的style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-setCss-为元素设置style属性"><span class="nav-text">4. setCss 为元素设置style属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-setGroupCss-为元素设置一组style"><span class="nav-text">5. setGroupCss 为元素设置一组style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-css"><span class="nav-text">6. css</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-children-获取元素的子元素"><span class="nav-text">7. children 获取元素的子元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-prev-获取元素的上一个哥哥元素"><span class="nav-text">8. prev 获取元素的上一个哥哥元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-prevAll-获取元素的所有哥哥元素"><span class="nav-text">9. prevAll 获取元素的所有哥哥元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-next-获取元素的下一个弟弟元素"><span class="nav-text">10. next 获取元素的下一个弟弟元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-nextAll-获取元素的所有弟弟元素"><span class="nav-text">11. nextAll 获取元素的所有弟弟元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-sibling-获取元素相邻元素"><span class="nav-text">12. sibling 获取元素相邻元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-siblings-获取元素的所有兄弟元素"><span class="nav-text">13. siblings 获取元素的所有兄弟元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-index-获取元素所在的索引"><span class="nav-text">14. index 获取元素所在的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-firstChild-获取第一个子节点"><span class="nav-text">15. firstChild 获取第一个子节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-lastChild-获取最后一个子节点"><span class="nav-text">16. lastChild 获取最后一个子节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-append-向指定容器的末尾追加元素"><span class="nav-text">17. append 向指定容器的末尾追加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-prepend-向指定容器的开头追加元素"><span class="nav-text">18. prepend 向指定容器的开头追加元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#19-insertBefore-把新元素追加到指定元素的前面"><span class="nav-text">19. insertBefore 把新元素追加到指定元素的前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-insertAfter-把新元素追加到指定元素的后面"><span class="nav-text">20. insertAfter 把新元素追加到指定元素的后面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-hasClass-判断元素是否有某个class"><span class="nav-text">21. hasClass 判断元素是否有某个class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-addClass-为元素添加class"><span class="nav-text">22. addClass 为元素添加class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-removeClass-移除元素中的class"><span class="nav-text">23. removeClass 移除元素中的class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-toggleClass-切换元素的class"><span class="nav-text">24. toggleClass 切换元素的class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-getElementsByClass"><span class="nav-text">25. getElementsByClass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+
+  <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Undo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count">博客全站共42.1k字</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_pv"></span>
+  </span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  resultItem += "<a href='" + articleUrl + "'>" +
+                    "<p class=\"search-result\">" + highlightKeyword(content, slicesOfContent[0]) +
+                    "...</p>" + "</a>";
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("TrNg8MVyoM4TGQ7zYEQw9fq8-gzGzoHsz", "xPUpeTvmODdglxIg6HfSuwAk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

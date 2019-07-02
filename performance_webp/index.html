@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="K2ahaYZf7f" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="性能优化,webp," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="现在我们看到的大多数网站，80%以上都是图片为主，所以图片的优化是前端性能优化的重要手段，也是非常有必要的一种手段。 我们知道图片的体积越小加载越快，那么图片的优化主要是减小体积或者叫压缩体积，但是压缩体积会造成一定的质量牺牲，那么体积和质量之间怎么均衡呢。">
+<meta name="keywords" content="性能优化,webp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用webp图片提升前端性能">
+<meta property="og:url" content="/performance_webp/index.html">
+<meta property="og:site_name" content="Undo">
+<meta property="og:description" content="现在我们看到的大多数网站，80%以上都是图片为主，所以图片的优化是前端性能优化的重要手段，也是非常有必要的一种手段。 我们知道图片的体积越小加载越快，那么图片的优化主要是减小体积或者叫压缩体积，但是压缩体积会造成一定的质量牺牲，那么体积和质量之间怎么均衡呢。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img13.360buyimg.com/uba/jfs/t29299/214/484992014/43062/361fdad1/5bf4cce8Na40450ed.png">
+<meta property="og:image" content="http://img13.360buyimg.com/uba/jfs/t28183/42/537026357/77280/842d1df/5bf60f8dN2042b016.png">
+<meta property="og:image" content="http://img14.360buyimg.com/uba/jfs/t28330/227/470674840/52834/9532d0e2/5bf4cce8N62374093.png">
+<meta property="og:image" content="http://img13.360buyimg.com/uba/jfs/t25861/343/2406676566/32025/6d85f77f/5bf4cce8N1317770b.png">
+<meta property="og:image" content="http://img13.360buyimg.com/uba/jfs/t27808/334/1995427189/4031/741665ad/5bf4cce8N1537074a.png">
+<meta property="og:image" content="http://img30.360buyimg.com/uba/jfs/t28849/219/479875041/14062/53449c0f/5bf4cce7N88d43324.png">
+<meta property="og:updated_time" content="2019-07-02T01:35:56.253Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用webp图片提升前端性能">
+<meta name="twitter:description" content="现在我们看到的大多数网站，80%以上都是图片为主，所以图片的优化是前端性能优化的重要手段，也是非常有必要的一种手段。 我们知道图片的体积越小加载越快，那么图片的优化主要是减小体积或者叫压缩体积，但是压缩体积会造成一定的质量牺牲，那么体积和质量之间怎么均衡呢。">
+<meta name="twitter:image" content="http://img13.360buyimg.com/uba/jfs/t29299/214/484992014/43062/361fdad1/5bf4cce8Na40450ed.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/performance_webp/"/>
+
+
+
+
+
+  <title>使用webp图片提升前端性能 | Undo</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-137390538-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cff78284d6ff310b4a8db47044574374";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Undo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Move fast and break things.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/performance_webp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Undo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Undo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">使用webp图片提升前端性能</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-22T00:00:00+08:00">
+                2018-11-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端新能/" itemprop="url" rel="index">
+                    <span itemprop="name">前端新能</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/performance_webp/" class="leancloud_visitors" data-flag-title="使用webp图片提升前端性能">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在我们看到的大多数网站，80%以上都是图片为主，所以图片的优化是前端性能优化的重要手段，也是非常有必要的一种手段。</p>
+<p>我们知道图片的体积越小加载越快，那么图片的优化主要是减小体积或者叫压缩体积，但是压缩体积会造成一定的质量牺牲，那么体积和质量之间怎么均衡呢。<br><a id="more"></a></p>
+<p>在进行具体的方案之前先了解一下几种常见格式的图片特征：</p>
+<h3 id="JPEG-JPG"><a href="#JPEG-JPG" class="headerlink" title="JPEG/JPG"></a>JPEG/JPG</h3><p><strong>优点</strong>：JPG 最大的特点是有损压缩。这种高效的压缩算法使它成为了一种非常轻巧的图片格式。另一方面，即使被称为“有损”压缩，JPG的压缩方式仍然是一种高质量的压缩方式：当我们把图片体积压缩至原有体积的 50% 以下时，JPG 仍然可以保持住 60% 的品质。此外，JPG 格式以 24 位存储单个图，可以呈现多达 1600 万种颜色，足以应对大多数场景下对色彩的要求，这一点决定了它压缩前后的质量损耗并不容易被我们人类的肉眼所察觉。</p>
+<p><strong>缺点</strong>：在处理矢量图形或logo等线条感较强、颜色对比强烈的图像时，人为压缩导致图片模糊相当明显。此外jpeg不支持透明，使用很受局限。</p>
+<p><strong>适用场景</strong>： JPG 适用于呈现色彩丰富的图片，开发中，JPG 图片经常作为大的背景图、轮播图。</p>
+<h3 id="PNG-8-与-PNG-24"><a href="#PNG-8-与-PNG-24" class="headerlink" title="PNG-8 与 PNG-24"></a>PNG-8 与 PNG-24</h3><p><strong>优点</strong>：PNG是一种无损压缩的高保真的图片格式。8 和 24，这里都是二进制数的位数，代表了支持的颜色的种类，24位呈现的色彩更丰富。PNG 图片具有比 JPG 更强的色彩表现力，对线条的处理更加细腻，对透明度有良好的支持。</p>
+<p><strong>缺点</strong>： 唯一的 缺点 就是<strong>体积太大</strong></p>
+<p><strong>使用场景</strong>：logo、小图标、颜色简单、对比度较强的透明小图在 PNG 格式下有着良好的表现。</p>
+<h3 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h3><p><strong>优点</strong>：<strong>文本文件、体积小、不失真、兼容性好</strong>，SVG 与 PNG 和 JPG 相比，<strong>文件体积更小，可压缩性更强</strong></p>
+<p><strong>特性</strong>：它和之前提及的其它图片种类有着本质的不同：SVG 对图像的处理不是基于像素点，而是是基于对图像的形状描述。作为矢量图，它最显著的优势还是在于<strong>图片可无限放大而不失真</strong>这一点上。SVG 是文本文件。我们既可以像写代码一样定义 SVG，把它写在 HTML 里、成为 DOM 的一部分，也可以把对图形的描述写入以 .svg 为后缀的独立文件（SVG 文件在使用上与普通图片文件无异）。这使得 SVG 文件可以被非常多的工具读取和修改，具有较强的灵活性。</p>
+<p><strong>缺点</strong>：一方面是它的渲染成本比较高，这点对性能来说是很不利的。另一方面，SVG 存在着其它图片格式所没有的学习成本（它是可编程的）。</p>
+<h3 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h3><p>Base64 并非一种图片格式，而是一种编码方式。Base64 和雪碧图一样，是作为小图标解决方案而存在的。</p>
+<p>雪碧图、CSS 精灵、CSS Sprites、图像精灵，说的都是这个东西——一种将小图标和背景图像合并到一张图片上，然后利用 CSS 的背景定位来显示其中的每一部分的技术，大家都非常熟悉了。</p>
+<p>雪碧图的出现是为了从另一个方面进行性能的提升，减少网页图片对服务器的请求次数。</p>
+<p>Base64同样也是为了减少请求次数，降低http的开销。</p>
+<p><strong>Base64 是一种用于传输 8Bit 字节码的编码方式，通过对图片进行 Base64 编码，我们可以直接将编码结果写入 HTML 或者写入 CSS，从而减少 HTTP 请求的次数。</strong></p>
+<p>但是打开一些主流网站我们发现Base64码出现的次数很少，这是因为Base64 编码后，编码的大小会膨胀为原图片的 4/3（这是由 Base64 的编码原理决定的）。如果我们把大图也编码到 HTML 或 CSS 文件中，后者的体积会明显增加，即便我们减少了 HTTP 请求，也无法弥补这庞大的体积带来的性能开销，得不偿失。</p>
+<p>因此，通常我们在开发的时候一般只会将体积非常小的图片进行Base64编码，这个时候Base64 带来的文件体积膨胀、以及浏览器解析 Base64 的时间开销，与它节省掉的 HTTP 请求开销相比，可以忽略不计，这时候才能真正体现出它在性能方面的优势。</p>
+<p>在webpack盛行的情况下，只需要在<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fwebpack-contrib%2Furl-loader" target="_blank" rel="noopener">url-loader</a>中稍加配置就可以将一定体积之下的图片编译成Base64码。也有很多线上的编码工具可供使用。</p>
+<h3 id="WebP"><a href="#WebP" class="headerlink" title="WebP"></a>WebP</h3><p>WebP 于 2010 年被提出， 是 Google 专为 Web 开发的一种<strong>旨在加快图片加载速度</strong>的图片格式，它支持有损压缩和无损压缩。它集多种图片文件格式的优点于一身。</p>
+<blockquote>
+<p>与 PNG 相比，WebP 无损图像的尺寸缩小了 26％。在等效的 SSIM 质量指数下，WebP 有损图像比同类 JPEG 图像小 25-34％。 无损 WebP 支持透明度（也称为 alpha 通道），仅需 22％ 的额外字节。对于有损 RGB 压缩可接受的情况，有损 WebP 也支持透明度，与 PNG 相比，通常提供 3 倍的文件大小。</p>
+</blockquote>
+<p>这也许是目前图片优化的最佳方式了。</p>
+<p>可是万恶的兼容性让他的使用受到了局限。</p>
+<p><img src="http://img13.360buyimg.com/uba/jfs/t29299/214/484992014/43062/361fdad1/5bf4cce8Na40450ed.png" alt="1542164268396"></p>
+<p>此外，WebP 还会增加服务器的负担——和编码 JPG 文件相比，编码同样质量的 WebP 文件会占用更多的计算资源。</p>
+<p>webp的应用场景：限制我们使用 WebP 的最大问题不是“这个图片是否适合用 WebP 呈现”的问题，而是“浏览器是否允许 WebP”的问题，即我们上文谈到的兼容性问题。当我们选择适用webp图片，就要考虑在不支持它的浏览器下如何正常显示。</p>
+<p>webp图片方案已经被多数大厂应用到项目中，比如在Chrome中打开京东首页，我们查看网络发现他们也使用了很多的webp格式的图片。</p>
+<p><img src="http://img13.360buyimg.com/uba/jfs/t28183/42/537026357/77280/842d1df/5bf60f8dN2042b016.png" alt="1542852435559"></p>
+<p>再来查看元素，我们发现html是这样的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"//img13.360buyimg.com/mobilecms/s140x140_jfs/t1/4688/27/2880/248823/5b978fe4Eeea92074/5c1ee7f70e8855e9.jpg!q90.webp"</span> <span class="attr">class</span>=<span class="string">"lazyimg_img"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>而在IE浏览器中打开，它的html却是这样的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"lazyimg_img"</span> <span class="attr">src</span>=<span class="string">"//img13.360buyimg.com/mobilecms/s140x140_jfs/t1/4688/27/2880/248823/5b978fe4Eeea92074/5c1ee7f70e8855e9.jpg!q90"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我们发现支持webp的浏览器中图片的url地址多了 <code>.webp</code>后缀，而.webp 前面，还跟了一个 .jpg 后缀！</p>
+<p>可以大胆地猜测，这个图片应该至少存在 jpg 和 webp 两种格式，程序会根据浏览器的型号、以及该型号是否支持 WebP 这些信息来决定当前浏览器显示的是 .webp 后缀还是 .jpg 后缀。</p>
+<p>那基于这种猜测我们怎么实现呢？</p>
+<h3 id="根据webp支持度决定请求那种格式的图片"><a href="#根据webp支持度决定请求那种格式的图片" class="headerlink" title="根据webp支持度决定请求那种格式的图片"></a>根据webp支持度决定请求那种格式的图片</h3><p>首先要检测浏览器是否支持webp，下面是网上比较通用的方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">;(<span class="function"><span class="keyword">function</span>(<span class="params">doc</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 给html根节点加上webps类名</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">addRootTag</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        doc.documentElement.className += <span class="string">"webps"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 判断是否有webps=A这个cookie</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="regexp">/(^|;\s?)webps=A/</span>.test(<span class="built_in">document</span>.cookie)) &#123;</span><br><span class="line">        <span class="keyword">var</span> image = <span class="keyword">new</span> Image();</span><br><span class="line">        <span class="comment">// 图片加载完成时候的操作</span></span><br><span class="line">        image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="comment">// 图片加载成功且宽度为1，那么就代表支持webp了，因为这张base64图是webp格式。如果不支持会触发image.error方法</span></span><br><span class="line">            <span class="keyword">if</span> (image.width == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// html根节点添加class，并且埋入cookie</span></span><br><span class="line">                addRootTag();</span><br><span class="line">                <span class="built_in">document</span>.cookie = <span class="string">"webps=A; max-age=31536000; domain=58.com"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 一张支持alpha透明度的webp的图片，使用base64编码</span></span><br><span class="line">        image.src = <span class="string">'data:image/webp;base64,UklGRkoAAABXRUJQVlA4WAoAAAAQAAAAAAAAAAAAQUxQSAwAAAARBxAR/Q9ERP8DAABWUDggGAAAABQBAJ0BKgEAAQAAAP4AAA3AAP7mtQAAAA=='</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        addRootTag();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;(<span class="built_in">document</span>));</span><br></pre></td></tr></table></figure>
+<p>把这段js代码在引入css之前加载进来，如果浏览器支持webp则会给html元素添加webps这个类名。</p>
+<p>接下来在css中如何使用呢，上面在在html元素加了webps这个类，那么在这个类下的元素就可以使用webp格式图片了 。</p>
+<p>比如 </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.webp-bg</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">620px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">304px</span>;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(assets/img/iweb.png);</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.webps</span> <span class="selector-class">.webp-bg</span> &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: <span class="built_in">url</span>(assets/img/iweb.png.webp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果使用了less或sass则更加简单，效率更高</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// less</span></span><br><span class="line"><span class="selector-class">.mixin</span>(<span class="variable">@url</span>) &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">@url</span>);</span><br><span class="line">  <span class="selector-class">.webps</span> <span class="selector-tag">&amp;</span> &#123;</span><br><span class="line">      <span class="attribute">background-image</span>: url(<span class="string">'@&#123;url&#125;.webp'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.webp-bg</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">620px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">304px</span>;</span><br><span class="line">  <span class="selector-class">.mixin</span>(<span class="string">'../../asset/img/iweb.png'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>定义一个函数，函数中处理图片格式的兼容，在背景图片使用的地方使用函数即可</p>
+<p>sass中实现同理</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@mixin</span> bg($url) &#123;</span><br><span class="line">    <span class="attribute">background-image</span>: url(<span class="string">$url</span>);</span><br><span class="line">    <span class="variable">@at-root</span>(<span class="attribute">with</span>: all) .webps &amp; &#123;</span><br><span class="line">        <span class="attribute">background-image</span>: url(<span class="string">$url + '.webp'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么img标签的url需要检测 document.documentElement.className 中是否包含 webps来决定是否在url后面追加 .webp </p>
+<p>这种方式在调试的时候就需要准备好webp图片，那么怎么得到webp图片呢 ？</p>
+<p>webp图片可以去网站平台或者格式转换工具生成，但是每次都手动去转换显然是很繁琐效率低下的事情，在node中我们可以使用文件系统检测文件的变化，从而根据变化动态生成webp图片。</p>
+<p>实现上述功能需要用到 chokidar 和 webp-converter</p>
+<p>chokidar 可以用于监控文件、文件夹变化，我们可以传入 glob 文件匹配模式，并可以简单实现递归目录监控。chokidar 可以监控各种文件、文件夹变化事件，包含 <code>add</code> , <code>change</code> , <code>unlink</code> , <code>addDir</code> , <code>unlinkDir</code> 等。</p>
+<p>webp-converter 是个webp转换器，用来将图片转换成webp格式，或者由webp转换成其他格式。</p>
+<p>上述功能简单实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> chokidar = <span class="built_in">require</span>(<span class="string">'chokidar'</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> webp = <span class="built_in">require</span>(<span class="string">'webp-converter'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> imgDir = <span class="string">'img'</span></span><br><span class="line"><span class="keyword">const</span> ignoreFiles = <span class="regexp">/(^\..+)/</span> <span class="comment">// 忽略文件.开头</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Watcher = chokidar.watch(imgDir, &#123;</span><br><span class="line">  ignored: <span class="function"><span class="params">path</span> =&gt;</span> ignoreFiles.test(path),</span><br><span class="line">  persistent: <span class="literal">true</span></span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line">Watcher.on(<span class="string">'all'</span>, (event, path) =&gt; &#123;</span><br><span class="line">  <span class="comment">// console.log('event:', event, 'path:', path)</span></span><br><span class="line">  <span class="keyword">switch</span> (event) &#123;</span><br><span class="line">    <span class="comment">// add change unlink </span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'add'</span>: </span><br><span class="line">    <span class="keyword">case</span> <span class="string">'change'</span>:</span><br><span class="line">      createWebp(path)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">'unlink'</span>: </span><br><span class="line">      deleteImage(path)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> deleteImage = <span class="function"><span class="params">path</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> imgPath = <span class="string">''</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="regexp">/\.webp$/</span>.test(path)) &#123;</span><br><span class="line">    imgPath = path.substr(<span class="number">0</span>, path.lastIndexOf(<span class="string">'.'</span>))</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    imgPath = path + <span class="string">'.webp'</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (fs.existsSync(imgPath)) &#123;</span><br><span class="line">    fs.unlinkSync(imgPath)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> createWebp = <span class="function"><span class="params">path</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span>(<span class="regexp">/\.webp$/</span>.test(path)) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">if</span>(fs.existsSync(path + <span class="string">'.webp'</span>)) <span class="keyword">return</span></span><br><span class="line">  webp.cwebp(path, path + <span class="string">'.webp'</span>, <span class="string">'-q 75'</span>, (status) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(status)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方式需要在node环境中运行这个js文件，来检测文件夹变化，可以是一个文件夹，也可以检测多个文件夹的变化，后续可以考虑做成webpack插件，以便在工程化项目中更方便的使用。</p>
+<p>这样我们就可以在开发调试的时候就使用上webp图片，这种方式更容易控制，但是管理起来更加繁琐。</p>
+<p>下面介绍一种结合 Service Workers 的一种实现方案。</p>
+<h3 id="Service-Workers-动态响应webp图片"><a href="#Service-Workers-动态响应webp图片" class="headerlink" title="Service Workers 动态响应webp图片"></a>Service Workers 动态响应webp图片</h3><p>Service Workers 同样也是比较新的技术，兼容性也不是很好，但是这个也是提升前端性能的重要途径，充分体现优雅降级，在支持它的浏览器中性能表现更为优异，不兼容的继续采用之前的方式。</p>
+<p><img src="http://img14.360buyimg.com/uba/jfs/t28330/227/470674840/52834/9532d0e2/5bf4cce8N62374093.png" alt="1542249884726"></p>
+<p>这种方式的的操作比较简单，在项目中的入口html文件中加入以下代码，用于注册Service Worker。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Register the service worker</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">'serviceWorker'</span> <span class="keyword">in</span> navigator) &#123;</span><br><span class="line">    navigator.serviceWorker.register(<span class="string">'./service-worker.js'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">registration</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Registration was successful</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'ServiceWorker registration successful with scope: '</span>, registration.scope);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// registration failed :(</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'ServiceWorker registration failed: '</span>, err);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果浏览器支持Service Workers 以上代码就会执行，不支持也不会影响项目的正常运行，用户其实是无感知的.</p>
+<p>然后创建Service Worker文件<code>service-worker.js</code>，用于拦截正在传递到服务器的请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// service-worker.js</span></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/\.jpe?g$|\.png$/</span>.test(event.request.url)) &#123;</span><br><span class="line">    <span class="keyword">var</span> supportsWebp = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (event.request.headers.has(<span class="string">'accept'</span>)) &#123;</span><br><span class="line">      supportsWebp = event.request.headers.get(<span class="string">'accept'</span>).includes(<span class="string">'webp'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (supportsWebp) &#123;</span><br><span class="line">      <span class="keyword">var</span> req = event.request.clone();</span><br><span class="line">      <span class="keyword">var</span> returnUrl = req.url + <span class="string">'.webp'</span></span><br><span class="line">      event.respondWith(</span><br><span class="line">        fetch(returnUrl, &#123;</span><br><span class="line">          mode: <span class="string">'no-cors'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Service Worker 服务注册成功之后，给他添加事件监听，监听所有的fetch事件，fetch事件会拦截所有的请求，当请求发生时，先判断请求是否是请求的<code>JPEG/JPG/PNG</code>格式的图片，然后再通过查看请求头中的<code>accept</code>字段，检测是否支持<code>webp</code>格式的图片，支持的话Accept中存在<code>image/webp</code> Mime类型，如果支持则替换成webp图片的url，去请求webp图片，不支持则正常请求 <code>JPEG/JPG/PNG</code> 格式的图片。</p>
+<p><img src="http://img13.360buyimg.com/uba/jfs/t25861/343/2406676566/32025/6d85f77f/5bf4cce8N1317770b.png" alt="1542250706599"></p>
+<p>然后来看一下实际的效果，</p>
+<p><img src="http://img13.360buyimg.com/uba/jfs/t27808/334/1995427189/4031/741665ad/5bf4cce8N1537074a.png" alt="1542250793076"></p>
+<p>html中是去加载这张png格式的图片，然而我们看看实际的网络请求状况：</p>
+<p><img src="http://img30.360buyimg.com/uba/jfs/t28849/219/479875041/14062/53449c0f/5bf4cce7N88d43324.png" alt="1542250942374"></p>
+<p>这就是 Service Worker 的功劳，我们代码中只是需要 png格式图片，Service Worker 却给我们返回了 webp 格式的图片，再回顾一下 webp 格式图片的特点，相同质量下的图片 webp 比 png 小 26%，如果页面中有大量图片的话，带来的性能优化和节省的网络流量还是相当可观的。</p>
+<p>Service Worker 的功能很强大，不仅可以拦截网络请求，还能进行缓存等更强大的功能，所以合理的运用它会给我们的web性能带来更为显著的提升。</p>
+<p>Service Worker 只有在https协议下才能注册成功，因此这种方式仅仅只需要解决线上环境的优化处理，在项目开发阶段无需关心，也就是说我们在开发阶段可以不用考虑webp图片的兼容问题，代码中所有图片都使用常用格式图片。</p>
+<p>那么现在又有一个问题，这些webp格式的图片怎么出现在线上服务器呢？</p>
+<p>有一些线上工具可以进行图片格式的转换，可以寻找到一些解决方案，也可以使用一些插件工具比如谷歌官方的webp生成工具，安装通过命令生成图片，然后将webp格式图片和常用格式图片一并上传至服务器。</p>
+<p>现在webpack已经成为前端开发者项目工程化比不可少的工具了，其实在webpack中配置响应的规则就可以自动化的生成webp的图片，同时配合 url-loader 将一些很小的图片转成 base64 进一步减少图片带来的网络请求。</p>
+<p>说webpack 配置之前先说一个 loader –  multi-loader，它的主要作用简单来说就是同一规则进行了同时用多个loader进行加载编译，同时输出对应的文件或结果。</p>
+<p>那么在 webpack 项目中我们可以只需要将png、jpg、jpeg等常见格式的图片引入项目中，所有的图片地址正常操作，在打包编译的时候，编译输出两张不同格式的图片即可，一张 webp 的，一张常规格式的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> multi = <span class="built_in">require</span>(<span class="string">'multi-loader'</span>);</span><br><span class="line">...</span><br><span class="line"><span class="comment">// 图片加载规则</span></span><br><span class="line">true&#123;</span><br><span class="line">        test: <span class="regexp">/\.(jpg|png|gif|jpeg)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line"></span><br><span class="line">            &#123;</span><br><span class="line">                loader: multi(</span><br><span class="line">                    <span class="string">'url-loader?limit=8192&amp;name=assets/img/[name].[ext].webp!webp-loader?&#123;quality: 75&#125;'</span>,</span><br><span class="line">                    <span class="string">'url-loader?limit=8192&amp;name=assets/img/[name].[ext]'</span></span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>稍作解释，用 url-loader 加载图片，对于小于8kb（大小根据项目而定）的图片进行base64编码；对于大于8kb的图片，编译出正常常规的图片，同时再使用 webp-loader 编译出一张 webp 格式的图片， webp-loader 可以传参数 quality 代码图片的转码的质量，相当于进一步压缩，压缩出来的图片webp 的大小不到原始图片的一半。</p>
+<p>然后配合上面的 service worker工作量很小，但是带来的性能优化却是很可观的。</p>
+<p>上面这种方式确实可以实现从服务器动态加载webp格式的图片，但是我们发现这样去使用的话仅仅只是需要对项目中的静态图片进行拦截，而相关业务的图片加载并不需要拦截，或许服务器上根本就没有配置webp格式的图片，比如接口中返回的图片地址。因此需要对代码稍作调整，对项目开发中的静态图片地址加参数，在 service worker 中匹配图片格式和参数，从而避免一些不必要的拦截。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// service-worker.js</span></span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line">self.addEventListener(<span class="string">'fetch'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/(\.jpe?g|\.png)\?iswebp$/</span>.test(event.request.url)) &#123;</span><br><span class="line">    <span class="keyword">var</span> supportsWebp = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (event.request.headers.has(<span class="string">'accept'</span>)) &#123;</span><br><span class="line">      supportsWebp = event.request.headers.get(<span class="string">'accept'</span>).includes(<span class="string">'webp'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (supportsWebp) &#123;</span><br><span class="line">      <span class="keyword">var</span> req = event.request.clone();</span><br><span class="line">      <span class="keyword">var</span> returnUrl = req.url.substr(<span class="number">0</span>, req.url.lastIndexOf(<span class="string">"?"</span>)) + <span class="string">".webp"</span>;</span><br><span class="line">      <span class="comment">// var returnUrl = req.url + '.webp'</span></span><br><span class="line">      event.respondWith(</span><br><span class="line">        fetch(returnUrl, &#123;</span><br><span class="line">          mode: <span class="string">'no-cors'</span></span><br><span class="line">        &#125;)</span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>webpack 配置中也做一下调整，是打包出来的图片路径拼接上参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> multi = <span class="built_in">require</span>(<span class="string">'multi-loader'</span>);</span><br><span class="line">...</span><br><span class="line">true&#123;</span><br><span class="line">        test: <span class="regexp">/\.(jpg|png|gif|jpeg)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line"></span><br><span class="line">            &#123;</span><br><span class="line">                loader: multi(</span><br><span class="line">                    <span class="string">'url-loader?limit=8192&amp;name=assets/img/[name].[ext].webp!webp-loader?&#123;quality: 75&#125;'</span>,</span><br><span class="line">                    <span class="string">'url-loader?limit=8192&amp;name=assets/img/[name].[ext]?iswebp'</span></span><br><span class="line">                )</span><br><span class="line">            &#125;</span><br><span class="line">        ],</span><br><span class="line">    &#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>这样就可以只对图片 url 中以 .iswebp结尾的请求进行拦截请求webp格式的图片，如果浏览器不支持，就会正常请求相应格式的图片。</p>
+<p>这样做有个好处，除了静态资源上的图片可以这样处理以外，其他动态的接口图片地址根据实际情况也可以实现使用 webp ，因为仅仅只需要在图片url上加上iswebp标识，服务器有对应的webp图片即可。</p>
+<p>这种方案更简单适用性更强，结合 Service Worker 性能上的提升会非常明显。</p>
+<p>更多关于  Service Worker  的文档请移步 <a href="https://lavas.baidu.com/" target="_blank" rel="noopener"> https://lavas.baidu.com/</a></p>
+<p><strong>结语</strong>：webp 格式图片现在呗越来越多的浏览器支持，它小体积高质量的特点使得它越来越受欢迎，我们可以在我们的项目中多使用它，利用它提升前端性能，同时也节省网络流量，webp只是解决方案之一，有更多更好的方案值得我们继续探索。webp 好用但也不是处处可用，项目中根据实际的业务场景和图片特性选择合理的图片格式才能真正体现它们的价值。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------  本文结束  <i class="fa fa-paw"></i> 感谢您的阅读  -------------</div>
+    
+</div>
+
+      
+    </div>
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/性能优化/" <i class="fa fa-tag"></i> 性能优化</a>
+        
+          <a href="/tags/webp/" <i class="fa fa-tag"></i> webp</a>
+        
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文标题:&nbsp;&nbsp;</strong>
+    <a href="/performance_webp/">使用webp图片提升前端性能</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Undo
+  </li>
+  <li class="post-copyright-author">
+    <strong>发布时间:&nbsp;&nbsp;</strong>
+    2018-11-22
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.songqibin.cn/performance_webp/" title="使用webp图片提升前端性能">http://www.songqibin.cn/performance_webp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+<p style="font-size:16px;font-weight:600;margin: 20px 0 0 0;">好友链接:</p>
+<ul class="post-copyright" style="margin-top:10px;">
+  <li class="post-copyright-author">
+    <strong>ice_point：</strong>
+    <a href="https://www.lishuaishuai.com/" target="_blank" title="ice_point的博客">https://www.lishuaishuai.com</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>lenore：</strong>
+    <a href="https://www.lenore412.com/" target="_blank" title="lenore的博客">https://www.lenore412.com</a>
+  </li>
+</ul>
+
+      </div>
+    
+  
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/react-hooks/" rel="next" title="React Hooks">
+                <i class="fa fa-chevron-left"></i> React Hooks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/css_coupon/" rel="prev" title="CSS - 实现优惠券">
+                CSS - 实现优惠券 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzYyNS8xNDE1Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  
+
+  
+    <div class="sidebar-toggle">
+      <div class="sidebar-toggle-line-wrap">
+        <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
+    </div>
+  
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          文章目录
+        </li>
+      </ul>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JPEG-JPG"><span class="nav-text">JPEG/JPG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PNG-8-与-PNG-24"><span class="nav-text">PNG-8 与 PNG-24</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVG"><span class="nav-text">SVG</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Base64"><span class="nav-text">Base64</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebP"><span class="nav-text">WebP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据webp支持度决定请求那种格式的图片"><span class="nav-text">根据webp支持度决定请求那种格式的图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Workers-动态响应webp图片"><span class="nav-text">Service Workers 动态响应webp图片</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+
+  <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Undo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count">博客全站共42.1k字</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_pv"></span>
+  </span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  resultItem += "<a href='" + articleUrl + "'>" +
+                    "<p class=\"search-result\">" + highlightKeyword(content, slicesOfContent[0]) +
+                    "...</p>" + "</a>";
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("TrNg8MVyoM4TGQ7zYEQw9fq8-gzGzoHsz", "xPUpeTvmODdglxIg6HfSuwAk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

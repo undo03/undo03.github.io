@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="K2ahaYZf7f" />
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JS,JS基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript 中有很多很常用的也很基础的知识点需要我们牢牢记住,倒背如流,这样在开发的时候才能得心应手. 本文主要总结了DOM,Array,String,Math的一些常用方法,还有一些JS编程的基本常识.">
+<meta name="keywords" content="JS,JS基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript中最最基础的知识点">
+<meta property="og:url" content="/js_basics/index.html">
+<meta property="og:site_name" content="Undo">
+<meta property="og:description" content="JavaScript 中有很多很常用的也很基础的知识点需要我们牢牢记住,倒背如流,这样在开发的时候才能得心应手. 本文主要总结了DOM,Array,String,Math的一些常用方法,还有一些JS编程的基本常识.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-02T01:35:56.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript中最最基础的知识点">
+<meta name="twitter:description" content="JavaScript 中有很多很常用的也很基础的知识点需要我们牢牢记住,倒背如流,这样在开发的时候才能得心应手. 本文主要总结了DOM,Array,String,Math的一些常用方法,还有一些JS编程的基本常识.">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":5},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="/js_basics/"/>
+
+
+
+
+
+  <title>JavaScript中最最基础的知识点 | Undo</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-137390538-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cff78284d6ff310b4a8db47044574374";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Undo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Move fast and break things.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/js_basics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Undo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Undo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JavaScript中最最基础的知识点</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T00:00:00+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/js_basics/" class="leancloud_visitors" data-flag-title="JavaScript中最最基础的知识点">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>JavaScript</code> 中有很多很常用的也很基础的知识点需要我们牢牢记住,倒背如流,这样在开发的时候才能得心应手.</p>
+<p>本文主要总结了<code>DOM</code>,<code>Array</code>,<code>String</code>,<code>Math</code>的一些常用方法,还有一些JS编程的基本常识.</p>
+<a id="more"></a>
+<h3 id="1-DOM"><a href="#1-DOM" class="headerlink" title="1. DOM"></a>1. DOM</h3><h4 id="1-1-获取DOM元素"><a href="#1-1-获取DOM元素" class="headerlink" title="1.1 获取DOM元素"></a>1.1 获取DOM元素</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById</span><br><span class="line"><span class="built_in">document</span>.getElementsByName</span><br><span class="line"><span class="built_in">document</span>.getElementsByTagName</span><br><span class="line"><span class="built_in">document</span>.getElementsByClassName</span><br><span class="line"><span class="built_in">document</span>.documentElement</span><br><span class="line"><span class="built_in">document</span>.body</span><br><span class="line"><span class="built_in">document</span>.querySelector</span><br><span class="line"><span class="built_in">document</span>.querySelectorAll</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-DOM节点"><a href="#1-2-DOM节点" class="headerlink" title="1.2 DOM节点"></a>1.2 DOM节点</h4><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">nodetype</th>
+<th style="text-align:right">nodeName</th>
+<th style="text-align:right">nodeValue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>元素节点</td>
+<td style="text-align:center">1</td>
+<td style="text-align:right">大写的标签名</td>
+<td style="text-align:right">null</td>
+</tr>
+<tr>
+<td>文本节点</td>
+<td style="text-align:center">3</td>
+<td style="text-align:right">#text</td>
+<td style="text-align:right">文本内容</td>
+</tr>
+<tr>
+<td>注释节点</td>
+<td style="text-align:center">8</td>
+<td style="text-align:right">#comment</td>
+<td style="text-align:right">注释内容</td>
+</tr>
+<tr>
+<td>document</td>
+<td style="text-align:center">9</td>
+<td style="text-align:right">#document</td>
+<td style="text-align:right">null</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-3-DOM节点属性"><a href="#1-3-DOM节点属性" class="headerlink" title="1.3 DOM节点属性"></a>1.3 DOM节点属性</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">parentNode</span><br><span class="line">childNodes</span><br><span class="line">children</span><br><span class="line">firstChild  (firstElementChild)</span><br><span class="line">lastChild   (lastElementChild)</span><br><span class="line">previousSibling  (previousElementSibling)</span><br><span class="line">nextSibling (nextElementSibling)</span><br></pre></td></tr></table></figure>
+<h4 id="1-4-DOM操作"><a href="#1-4-DOM操作" class="headerlink" title="1.4 DOM操作"></a>1.4 DOM操作</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">createElement</span><br><span class="line">appendChild</span><br><span class="line">insertBefore</span><br><span class="line">replaceChild</span><br><span class="line">removeChild</span><br><span class="line">cloneNode(<span class="literal">true</span>/<span class="literal">false</span>)</span><br><span class="line">getAttribute</span><br><span class="line">setAttribute</span><br><span class="line">removeAttribute</span><br></pre></td></tr></table></figure>
+<h3 id="2-Array-数组常用方法"><a href="#2-Array-数组常用方法" class="headerlink" title="2. Array 数组常用方法"></a>2. Array 数组常用方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>push</span><br><span class="line"><span class="number">2.</span>pop</span><br><span class="line"><span class="number">3.</span>shift</span><br><span class="line"><span class="number">4.</span>unshift</span><br><span class="line"><span class="number">5.</span>splice</span><br><span class="line">    splice(n,m) 删除 返回值：删除的内容以新数组的形式返回</span><br><span class="line">    splice(n,<span class="number">0</span>,x) 添加</span><br><span class="line">    splice(n,m,x) 替换</span><br><span class="line"><span class="number">6.</span>slice</span><br><span class="line">查找 slice(n,m)</span><br><span class="line">克隆 slice()/ slice(<span class="number">0</span>)</span><br><span class="line"><span class="number">7.</span>concat</span><br><span class="line">数组拼接 ary1.concat(ary)</span><br><span class="line">克隆  ary1.concat();</span><br><span class="line"><span class="number">8.</span>toString()</span><br><span class="line"><span class="number">9.</span>join() <span class="built_in">eval</span>()</span><br><span class="line"><span class="number">10.</span>sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a-b&#125;)</span><br><span class="line"><span class="number">11.</span>reverse()</span><br><span class="line"><span class="number">12.</span>indexOf() 找到返回对应内容的索引 找不到<span class="number">-1</span>；</span><br><span class="line"><span class="number">13.</span>forEach()</span><br><span class="line"><span class="number">14.</span>map();</span><br><span class="line"><span class="number">15.</span>some();</span><br><span class="line"><span class="number">16.</span>every();</span><br><span class="line"><span class="number">17.</span>forEach();</span><br><span class="line"><span class="number">18.</span>filter();</span><br><span class="line"><span class="number">19.</span>reduce();</span><br><span class="line"><span class="number">20.</span>includes();</span><br></pre></td></tr></table></figure>
+<h3 id="3-字符串常用方法"><a href="#3-字符串常用方法" class="headerlink" title="3. 字符串常用方法"></a>3. 字符串常用方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>charAt</span><br><span class="line"><span class="number">2.</span>charCodeAt</span><br><span class="line"><span class="number">3.</span>indexOf()</span><br><span class="line"><span class="number">4.</span>lastIndexOf();</span><br><span class="line"><span class="number">5.</span>substr(n,m) 从索引n开始，找m个</span><br><span class="line"><span class="number">6.</span>substring(n,m) 从索引n开始，找到索引m，不包含索引m</span><br><span class="line"><span class="number">7.</span>slice(n,m)从索引n开始，找到索引m，不包含索引m; 可以取负值</span><br><span class="line"><span class="number">8.</span>split() 字符串转数组</span><br><span class="line"><span class="number">9.</span>toUpperCase() 转大写</span><br><span class="line"><span class="number">10.</span>toLowerCase() 转小写</span><br><span class="line"><span class="number">11.</span>replace(<span class="string">''</span>,<span class="string">''</span>) 替换</span><br><span class="line"><span class="number">12.</span>search() 查找，找到返回索引，找不到<span class="number">-1</span>；</span><br><span class="line"><span class="number">13.</span>match() 匹配</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="4-Math-常用方法"><a href="#4-Math-常用方法" class="headerlink" title="4. Math 常用方法"></a>4. Math 常用方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.random()</span><br><span class="line"><span class="built_in">Math</span>.round() 四舍五入</span><br><span class="line"><span class="built_in">Math</span>.floor() 向下取整</span><br><span class="line"><span class="built_in">Math</span>.ceil() 向上取整</span><br><span class="line"><span class="built_in">Math</span>.abs() 取绝对值</span><br><span class="line"><span class="built_in">Math</span>.min() 取最小值</span><br><span class="line"><span class="built_in">Math</span>.max() 取最大值</span><br><span class="line"><span class="built_in">Math</span>.sqrt() 开平方</span><br><span class="line"><span class="built_in">Math</span>.pow()  幂</span><br></pre></td></tr></table></figure>
+<h3 id="5-为何学习预解释"><a href="#5-为何学习预解释" class="headerlink" title="5. 为何学习预解释"></a>5. 为何学习预解释</h3><ol>
+<li>如果函数中未定义此变量，为何还能拿到</li>
+<li>函数中定义的变量，但是在赋值之前，我们仍然能拿到值，但是拿到是<code>undefined</code></li>
+<li>为何把<code>var</code>去掉程序还能正常执行；</li>
+<li>在定义函数之前，调用函数，也能执行函数，为什么？</li>
+</ol>
+<p>最终目的：写代码时，思路更加清楚，知道为何程序能正常执行，为何会报错？避免很多不正规的写法，因为这些不正规的写法很容出错，而且不会报错</p>
+<h3 id="6-预解释"><a href="#6-预解释" class="headerlink" title="6. 预解释"></a>6. 预解释</h3><p><strong>概念：</strong>在当前作用域下，在JS代码执行之前，浏览器会对带<code>var</code>和带<code>function</code>进行提前声明或者定义；</p>
+<p><strong>声明：</strong>告诉浏览器有这么一个变量，但是没有赋值，没赋值拿到的<code>undefined</code>;</p>
+<p><strong>定义：</strong>对已经声明过的这个变量进行赋值</p>
+<p>关于变量和函数预解释阶段的不同</p>
+<blockquote>
+<p>带<code>var</code> :只声明不定义<br>带<code>function</code>:声明+定义；</p>
+</blockquote>
+<h3 id="7-函数"><a href="#7-函数" class="headerlink" title="7. 函数"></a>7. 函数</h3><p><strong>定义步骤：</strong></p>
+<blockquote>
+<p>1.开辟一个空间地址<br>2.把函数体中所有JS代码做为字符串存在这个空间中<br>3.把空间地址赋值给函数名</p>
+</blockquote>
+<p><strong>函数调用步骤：</strong></p>
+<blockquote>
+<p>1.对形参赋值；<br>2.预解释 <code>var function</code>;<br>3.JS代码从上到下的执行</p>
+</blockquote>
+<h3 id="8-作用域链"><a href="#8-作用域链" class="headerlink" title="8. 作用域链"></a>8. 作用域链</h3><p>当函数执行的时候，形成一个私有作用域A,查看作用域中的这个变量是否为私有变量：</p>
+<p>1）如果是私有变量：这个函数中的所有此变量，跟外面没有任何关系；<br>2）如果不是私有变量：</p>
+<ol>
+<li>如果是获取；往上级作用域进行查找，如果找到，弹出，找不到继续往上级作用域进行查找…最终一直找到<code>window</code>，如果还没有，报错</li>
+<li>如果是设置；往上级作用域进行查找，如果找到，重新赋值；找不到继续往上级作用域进行查找…最终一直找到<code>window</code>，如果还没有，他就是<code>window</code>上的全局属性；</li>
+</ol>
+<h3 id="9-关于作用域"><a href="#9-关于作用域" class="headerlink" title="9. 关于作用域"></a>9. 关于作用域</h3><p><strong>全局作用域：</strong>当浏览器加载html页面的时候，会形成一个供JS代码执行的环境；在这个全局作用域下，所有的全局变量都是<code>window</code>上的全局属性； 所有的全局函数，都是<code>window</code>上的全局方法；<br><strong>私有作用域:</strong> 只在某个范围内有效,大多指函数内部</p>
+<h3 id="10-带var和不带var的区别"><a href="#10-带var和不带var的区别" class="headerlink" title="10. 带var和不带var的区别"></a>10. 带var和不带var的区别</h3><p>带<code>var</code>: 1）会进行预解释 2）如果是全局变量，<code>window</code>的全局属性</p>
+<p>不带<code>var</code>: 1)不会进行预解释 2）如果是设置；往上级作用域进行查找，如果找到，重新赋值；找不到继续往上级作用域进行查找。。。。最终一直找到<code>window</code>，如果还没有，他就是<code>window</code>上的全局属性；</p>
+<h3 id="11-私有变量有且只有两种"><a href="#11-私有变量有且只有两种" class="headerlink" title="11. 私有变量有且只有两种"></a>11. 私有变量有且只有两种</h3><ol>
+<li>函数中带var的</li>
+<li>形参</li>
+</ol>
+<h3 id="12-关于预解释的无节操："><a href="#12-关于预解释的无节操：" class="headerlink" title="12. 关于预解释的无节操："></a>12. 关于预解释的无节操：</h3><ol>
+<li>自执行函数不需要预解释，当代码执行到他的时候；声明+定义+调用同步完成；</li>
+<li>已经声明过的变量，不需要重新声明，只需要重新赋值；</li>
+<li>对于带<code>var</code>的，我们之对等号左边，进行声明；不运行等号右边的（即只声明，不定义）</li>
+<li><code>if</code> 条件语句，无论条件是否成立，都会进行预解释<br>注意：在 <code>if</code>条件语句中不要定义函数；因为各大浏览器对if语句的预解释不同；很容易出错；</li>
+<li><code>return</code>返回值不进行预解释；<code>return</code>下面的语句虽然不执行，但是会进行预解释；</li>
+</ol>
+<h3 id="13-闭包的作用"><a href="#13-闭包的作用" class="headerlink" title="13. 闭包的作用"></a>13. 闭包的作用</h3><ol>
+<li>防止变量名冲突</li>
+<li>在闭包中对全局变量重新赋值，并且不影响全局变量</li>
+<li>可以通过<code>window.xx</code>改变全局变量；</li>
+<li>闭包可以用来封装；可以通过<code>window.xxx=函数名；</code></li>
+</ol>
+<h3 id="14-函数当作表达式赋值给变量时注意事项："><a href="#14-函数当作表达式赋值给变量时注意事项：" class="headerlink" title="14. 函数当作表达式赋值给变量时注意事项："></a>14. 函数当作表达式赋值给变量时注意事项：</h3><p>当函数做为表达式赋值给一个变量的时候，是按照变量的预解释机制进行预解释的；</p>
+<p>这个变量名，是不是就相当于函数名，虽然不能在上面调用，但是可以在函数赋值后调用；</p>
+<h3 id="15-内存"><a href="#15-内存" class="headerlink" title="15. 内存"></a>15. 内存</h3><p><strong>js中内存：</strong>堆内存 和 栈内存</p>
+<p><strong>栈内存：</strong>提供了一个供JS代码执行的环境</p>
+<p><strong>环境：</strong>全局环境，私有环境</p>
+<p><strong>堆内存：</strong>存放是引用数据类型的值；对象：存的对象的属性名和属性值； 函数：把函数体中的JS代码做为字符串存在这个空间中</p>
+<h3 id="16-内存释放"><a href="#16-内存释放" class="headerlink" title="16. 内存释放"></a>16. 内存释放</h3><p><strong>堆内存释放：</strong>只要堆内存被变量占用，就无法释放； <code>var a=xxff00; a=null;</code><br>    解决措施：让 <code>变量名=null</code>； 即，让变量名等于空指针，当浏览器空闲的时候，就会把指向空指针的变量收回，浏览器的这种回收机制，叫做垃圾回收机制；<br><strong>栈内存：</strong><br>全局作用域：当浏览器加载完HTML页面的时候，就形成一个全局作用域；只有关闭页面，才能释放；<br>如果不关闭页面，那么全局作用域下的所有变量和内容都无法得到释放；<br>我们唯一能做的就是减少全局变量；<br>私有作用域：当函数执行的时候，形成一个私有作用域；一般情况下，当函数执行完成的时候私有作用域就被释放；<br>有两种情况不会被释放：</p>
+<ol>
+<li>如果私有函数中有东西被函数外面的变量或者其他元素占用的时候，此函数不能释放；</li>
+<li>不立即释放；这个函数执行完成的时候，会返回一个函数，被返回的这个函数还需要再执行一次，等返回的函数执行完成，所有的函数才能释放；</li>
+</ol>
+<h3 id="17-n-和-n-的区别"><a href="#17-n-和-n-的区别" class="headerlink" title="17. ++n 和 n++ 的区别"></a>17. ++n 和 n++ 的区别</h3><p><code>++n</code> 先<code>++</code>；再运算; <code>15+（++n）=16;</code> <code>15+（++n）=17;</code><br><code>n++</code> 先运算，再<code>++</code>; <code>15+n++=15;</code> <code>15+n++=16;</code><br>注意：再<code>++</code>时，只是 <code>n</code> 自身的<code>++</code>；跟整个运算没有关系；</p>
+<h3 id="18-关于this的小总结"><a href="#18-关于this的小总结" class="headerlink" title="18. 关于this的小总结"></a>18. 关于this的小总结</h3><ol>
+<li>当触发一个元素身上的事件，执行对应的函数的时候，函数中的<code>this</code>，指向当前这个元素；</li>
+<li>当函数执行的时候，”.”前面是谁，<code>this</code>就是谁</li>
+<li>自执行函数中的<code>this</code>，永远都是<code>window</code>；</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------  本文结束  <i class="fa fa-paw"></i> 感谢您的阅读  -------------</div>
+    
+</div>
+
+      
+    </div>
+    
+    
+      <div class="post-tags">
+        
+          <a href="/tags/JS/" <i class="fa fa-tag"></i> JS</a>
+        
+          <a href="/tags/JS基础/" <i class="fa fa-tag"></i> JS基础</a>
+        
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文标题:&nbsp;&nbsp;</strong>
+    <a href="/js_basics/">JavaScript中最最基础的知识点</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Undo
+  </li>
+  <li class="post-copyright-author">
+    <strong>发布时间:&nbsp;&nbsp;</strong>
+    2017-06-18
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.songqibin.cn/js_basics/" title="JavaScript中最最基础的知识点">http://www.songqibin.cn/js_basics/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+<p style="font-size:16px;font-weight:600;margin: 20px 0 0 0;">好友链接:</p>
+<ul class="post-copyright" style="margin-top:10px;">
+  <li class="post-copyright-author">
+    <strong>ice_point：</strong>
+    <a href="https://www.lishuaishuai.com/" target="_blank" title="ice_point的博客">https://www.lishuaishuai.com</a>
+  </li>
+  <li class="post-copyright-author">
+    <strong>lenore：</strong>
+    <a href="https://www.lenore412.com/" target="_blank" title="lenore的博客">https://www.lenore412.com</a>
+  </li>
+</ul>
+
+      </div>
+    
+  
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/theme_next/" rel="next" title="NexT 主题配置">
+                <i class="fa fa-chevron-left"></i> NexT 主题配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/js_detection_data_type/" rel="prev" title="JS中检测数据类型的几种方式">
+                JS中检测数据类型的几种方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzYyNS8xNDE1Ng=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+
+  
+
+  
+    <div class="sidebar-toggle">
+      <div class="sidebar-toggle-line-wrap">
+        <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+        <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      </div>
+    </div>
+  
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+          文章目录
+        </li>
+      </ul>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-DOM"><span class="nav-text">1. DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-获取DOM元素"><span class="nav-text">1.1 获取DOM元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-DOM节点"><span class="nav-text">1.2 DOM节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-DOM节点属性"><span class="nav-text">1.3 DOM节点属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-DOM操作"><span class="nav-text">1.4 DOM操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Array-数组常用方法"><span class="nav-text">2. Array 数组常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-字符串常用方法"><span class="nav-text">3. 字符串常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Math-常用方法"><span class="nav-text">4. Math 常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-为何学习预解释"><span class="nav-text">5. 为何学习预解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-预解释"><span class="nav-text">6. 预解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-函数"><span class="nav-text">7. 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-作用域链"><span class="nav-text">8. 作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-关于作用域"><span class="nav-text">9. 关于作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-带var和不带var的区别"><span class="nav-text">10. 带var和不带var的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-私有变量有且只有两种"><span class="nav-text">11. 私有变量有且只有两种</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-关于预解释的无节操："><span class="nav-text">12. 关于预解释的无节操：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-闭包的作用"><span class="nav-text">13. 闭包的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-函数当作表达式赋值给变量时注意事项："><span class="nav-text">14. 函数当作表达式赋值给变量时注意事项：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-内存"><span class="nav-text">15. 内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16-内存释放"><span class="nav-text">16. 内存释放</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17-n-和-n-的区别"><span class="nav-text">17. ++n 和 n++ 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#18-关于this的小总结"><span class="nav-text">18. 关于this的小总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2019</span>
+
+  <span class="post-meta-divider">|</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Undo</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Site words total count">博客全站共42.1k字</span>
+  
+
+  <span class="post-meta-divider">|</span>
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_pv"></span>
+  </span>
+</div>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('5');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  resultItem += "<a href='" + articleUrl + "'>" +
+                    "<p class=\"search-result\">" + highlightKeyword(content, slicesOfContent[0]) +
+                    "...</p>" + "</a>";
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'manual') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("TrNg8MVyoM4TGQ7zYEQw9fq8-gzGzoHsz", "xPUpeTvmODdglxIg6HfSuwAk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
