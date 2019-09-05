@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>/react-hooks-redux/</loc>
+    <lastmod>2019-09-05T08:24:11.832Z</lastmod>
+    <data>
+        <display>
+        <title>React Hooks + Context 打造简版redux</title>
+        <pubTime>2019-09-04T16:00:00.000Z</pubTime>
+        
+        <tag>react</tag>
+         
+        <tag>react-hooks-redux</tag>
+         
+         
+           
+             
+              <breadCrumb title="React" url="/categories/React/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/URL_Analysis/</loc>
     <lastmod>2019-07-02T03:03:35.743Z</lastmod>
     <data>
@@ -118,26 +140,6 @@
 
     
   <url>
-    <loc>/rn_modal/</loc>
-    <lastmod>2019-07-02T01:35:56.255Z</lastmod>
-    <data>
-        <display>
-        <title>React Native Modal组件 Android覆盖状态栏</title>
-        <pubTime>2018-06-13T16:00:00.000Z</pubTime>
-        
-        <tag>react-native</tag>
-         
-         
-           
-             
-              <breadCrumb title="ReactNative" url="/categories/ReactNative/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>/redux_understanding/</loc>
     <lastmod>2019-07-02T01:35:56.255Z</lastmod>
     <data>
@@ -178,19 +180,41 @@
 
     
   <url>
-    <loc>/git_git_flow/</loc>
-    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
+    <loc>/rn_modal/</loc>
+    <lastmod>2019-07-02T01:35:56.255Z</lastmod>
     <data>
         <display>
-        <title>git-flow 工作流程</title>
-        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
+        <title>React Native Modal组件 Android覆盖状态栏</title>
+        <pubTime>2018-06-13T16:00:00.000Z</pubTime>
         
-        <tag>Git</tag>
+        <tag>react-native</tag>
          
          
            
              
-              <breadCrumb title="Git" url="/categories/Git/"/>
+              <breadCrumb title="ReactNative" url="/categories/ReactNative/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/react-hooks/</loc>
+    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
+    <data>
+        <display>
+        <title>React Hooks</title>
+        <pubTime>2018-11-20T16:00:00.000Z</pubTime>
+        
+        <tag>react</tag>
+         
+        <tag>react-hooks</tag>
+         
+         
+           
+             
+              <breadCrumb title="React" url="/categories/React/"/>
           
         </display>
     </data>
@@ -238,21 +262,19 @@
 
     
   <url>
-    <loc>/react-hooks/</loc>
+    <loc>/git_git_flow/</loc>
     <lastmod>2019-07-02T01:35:56.254Z</lastmod>
     <data>
         <display>
-        <title>React Hooks</title>
-        <pubTime>2018-11-20T16:00:00.000Z</pubTime>
+        <title>git-flow 工作流程</title>
+        <pubTime>2018-07-03T16:00:00.000Z</pubTime>
         
-        <tag>react</tag>
-         
-        <tag>react-hooks</tag>
+        <tag>Git</tag>
          
          
            
              
-              <breadCrumb title="React" url="/categories/React/"/>
+              <breadCrumb title="Git" url="/categories/Git/"/>
           
         </display>
     </data>
@@ -282,16 +304,16 @@
 
     
   <url>
-    <loc>/theme_init_blog/</loc>
+    <loc>/theme_next/</loc>
     <lastmod>2019-07-02T01:35:56.253Z</lastmod>
     <data>
         <display>
-        <title>Hexo + github 搭建个人博客</title>
-        <pubTime>2017-06-09T16:00:00.000Z</pubTime>
+        <title>NexT 主题配置</title>
+        <pubTime>2017-06-10T16:00:00.000Z</pubTime>
         
         <tag>hexo</tag>
          
-        <tag>搭建博客</tag>
+        <tag>主题配置</tag>
          
          
            
@@ -304,16 +326,16 @@
 
     
   <url>
-    <loc>/theme_next/</loc>
+    <loc>/theme_init_blog/</loc>
     <lastmod>2019-07-02T01:35:56.253Z</lastmod>
     <data>
         <display>
-        <title>NexT 主题配置</title>
-        <pubTime>2017-06-10T16:00:00.000Z</pubTime>
+        <title>Hexo + github 搭建个人博客</title>
+        <pubTime>2017-06-09T16:00:00.000Z</pubTime>
         
         <tag>hexo</tag>
          
-        <tag>主题配置</tag>
+        <tag>搭建博客</tag>
          
          
            
@@ -396,28 +418,6 @@
 
     
   <url>
-    <loc>/js_archetypal_chain/</loc>
-    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
-    <data>
-        <display>
-        <title>面向对象原型链和原型链查找机制</title>
-        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-        <tag>原型链</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>/js_list_to_array/</loc>
     <lastmod>2019-07-02T01:35:56.251Z</lastmod>
     <data>
@@ -440,18 +440,16 @@
 
     
   <url>
-    <loc>/js_compare_data_type/</loc>
-    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
+    <loc>/js_archetypal_chain/</loc>
+    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
     <data>
         <display>
-        <title>不同数据类型之间的比较</title>
-        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
+        <title>面向对象原型链和原型链查找机制</title>
+        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
-        <tag>JS基础</tag>
-         
-        <tag>比较</tag>
+        <tag>原型链</tag>
          
          
            
@@ -512,16 +510,18 @@
 
     
   <url>
-    <loc>/js_dom_mapping_backflow/</loc>
-    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <loc>/js_compare_data_type/</loc>
+    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
     <data>
         <display>
-        <title>DOM映射、回流和重绘</title>
-        <pubTime>2017-08-17T16:00:00.000Z</pubTime>
+        <title>不同数据类型之间的比较</title>
+        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
-        <tag>DOM</tag>
+        <tag>JS基础</tag>
+         
+        <tag>比较</tag>
          
          
            
@@ -534,18 +534,16 @@
 
     
   <url>
-    <loc>/js_sorting_algorithm/</loc>
+    <loc>/js_basics/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
         <display>
-        <title>JS中常见的几种排序算法</title>
-        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
+        <title>JavaScript中最最基础的知识点</title>
+        <pubTime>2017-06-17T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
         <tag>JS基础</tag>
-         
-        <tag>排序算法</tag>
          
          
            
@@ -582,6 +580,28 @@
 
     
   <url>
+    <loc>/js_dom_mapping_backflow/</loc>
+    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <data>
+        <display>
+        <title>DOM映射、回流和重绘</title>
+        <pubTime>2017-08-17T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>DOM</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/js_inherit/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
@@ -606,38 +626,18 @@
 
     
   <url>
-    <loc>/js_basics/</loc>
+    <loc>/js_sorting_algorithm/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
         <display>
-        <title>JavaScript中最最基础的知识点</title>
-        <pubTime>2017-06-17T16:00:00.000Z</pubTime>
+        <title>JS中常见的几种排序算法</title>
+        <pubTime>2017-06-19T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
         <tag>JS基础</tag>
          
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/css_layout_skills/</loc>
-    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
-    <data>
-        <display>
-        <title>css 布局技巧</title>
-        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-        <tag>布局技巧</tag>
+        <tag>排序算法</tag>
          
          
            
@@ -667,6 +667,28 @@
            
              
               <breadCrumb title="CSS" url="/categories/CSS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/css_layout_skills/</loc>
+    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
+    <data>
+        <display>
+        <title>css 布局技巧</title>
+        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
+        
+        <tag>CSS</tag>
+         
+        <tag>布局技巧</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
           
         </display>
     </data>
