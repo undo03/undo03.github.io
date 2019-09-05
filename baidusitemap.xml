@@ -5,10 +5,10 @@
     
   <url>
     <loc>/react-hooks-redux/</loc>
-    <lastmod>2019-09-05T08:24:11.832Z</lastmod>
+    <lastmod>2019-09-05T08:27:27.437Z</lastmod>
     <data>
         <display>
-        <title>React Hooks + Context 打造简版redux</title>
+        <title>React Hooks 模拟 redux</title>
         <pubTime>2019-09-04T16:00:00.000Z</pubTime>
         
         <tag>react</tag>
@@ -100,12 +100,12 @@
     
     
   <url>
-    <loc>/rn_simple_download_manager/</loc>
+    <loc>/rn_common_problem/</loc>
     <lastmod>2019-07-02T01:35:56.256Z</lastmod>
     <data>
         <display>
-        <title>react-native 文件下载</title>
-        <pubTime>2018-07-10T16:00:00.000Z</pubTime>
+        <title>react-native开发常见问题</title>
+        <pubTime>2018-06-11T16:00:00.000Z</pubTime>
         
         <tag>react-native</tag>
          
@@ -120,12 +120,12 @@
 
     
   <url>
-    <loc>/rn_common_problem/</loc>
+    <loc>/rn_simple_download_manager/</loc>
     <lastmod>2019-07-02T01:35:56.256Z</lastmod>
     <data>
         <display>
-        <title>react-native开发常见问题</title>
-        <pubTime>2018-06-11T16:00:00.000Z</pubTime>
+        <title>react-native 文件下载</title>
+        <pubTime>2018-07-10T16:00:00.000Z</pubTime>
         
         <tag>react-native</tag>
          
@@ -200,6 +200,26 @@
 
     
   <url>
+    <loc>/git_basis/</loc>
+    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
+    <data>
+        <display>
+        <title>Git 常用操作</title>
+        <pubTime>2017-07-10T16:00:00.000Z</pubTime>
+        
+        <tag>Git</tag>
+         
+         
+           
+             
+              <breadCrumb title="Git" url="/categories/Git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/react-hooks/</loc>
     <lastmod>2019-07-02T01:35:56.254Z</lastmod>
     <data>
@@ -242,26 +262,6 @@
 
     
   <url>
-    <loc>/git_basis/</loc>
-    <lastmod>2019-07-02T01:35:56.254Z</lastmod>
-    <data>
-        <display>
-        <title>Git 常用操作</title>
-        <pubTime>2017-07-10T16:00:00.000Z</pubTime>
-        
-        <tag>Git</tag>
-         
-         
-           
-             
-              <breadCrumb title="Git" url="/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>/git_git_flow/</loc>
     <lastmod>2019-07-02T01:35:56.254Z</lastmod>
     <data>
@@ -275,28 +275,6 @@
            
              
               <breadCrumb title="Git" url="/categories/Git/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/performance_webp/</loc>
-    <lastmod>2019-07-02T01:35:56.253Z</lastmod>
-    <data>
-        <display>
-        <title>使用webp图片提升前端性能</title>
-        <pubTime>2018-11-21T16:00:00.000Z</pubTime>
-        
-        <tag>性能优化</tag>
-         
-        <tag>webp</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端新能" url="/categories/%E5%89%8D%E7%AB%AF%E6%96%B0%E8%83%BD/"/>
           
         </display>
     </data>
@@ -341,6 +319,28 @@
            
              
               <breadCrumb title="Hexo 主题" url="/categories/Hexo-%E4%B8%BB%E9%A2%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/performance_webp/</loc>
+    <lastmod>2019-07-02T01:35:56.253Z</lastmod>
+    <data>
+        <display>
+        <title>使用webp图片提升前端性能</title>
+        <pubTime>2018-11-21T16:00:00.000Z</pubTime>
+        
+        <tag>性能优化</tag>
+         
+        <tag>webp</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端新能" url="/categories/%E5%89%8D%E7%AB%AF%E6%96%B0%E8%83%BD/"/>
           
         </display>
     </data>
@@ -394,6 +394,28 @@
 
     
   <url>
+    <loc>/js_archetypal_chain/</loc>
+    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
+    <data>
+        <display>
+        <title>面向对象原型链和原型链查找机制</title>
+        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>原型链</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/js_array_slice/</loc>
     <lastmod>2019-07-02T01:35:56.251Z</lastmod>
     <data>
@@ -440,16 +462,18 @@
 
     
   <url>
-    <loc>/js_archetypal_chain/</loc>
-    <lastmod>2019-07-02T01:35:56.251Z</lastmod>
+    <loc>/js_promise/</loc>
+    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
     <data>
         <display>
-        <title>面向对象原型链和原型链查找机制</title>
-        <pubTime>2017-06-22T16:00:00.000Z</pubTime>
+        <title>Promise 简单介绍</title>
+        <pubTime>2018-06-21T16:00:00.000Z</pubTime>
         
         <tag>JS</tag>
          
-        <tag>原型链</tag>
+        <tag>promise</tag>
+         
+        <tag>ES6</tag>
          
          
            
@@ -486,30 +510,6 @@
 
     
   <url>
-    <loc>/js_promise/</loc>
-    <lastmod>2019-07-02T01:35:56.250Z</lastmod>
-    <data>
-        <display>
-        <title>Promise 简单介绍</title>
-        <pubTime>2018-06-21T16:00:00.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-        <tag>promise</tag>
-         
-        <tag>ES6</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>/js_compare_data_type/</loc>
     <lastmod>2019-07-02T01:35:56.250Z</lastmod>
     <data>
@@ -522,28 +522,6 @@
         <tag>JS基础</tag>
          
         <tag>比较</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/js_basics/</loc>
-    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
-    <data>
-        <display>
-        <title>JavaScript中最最基础的知识点</title>
-        <pubTime>2017-06-17T16:00:00.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-        <tag>JS基础</tag>
          
          
            
@@ -626,6 +604,28 @@
 
     
   <url>
+    <loc>/js_basics/</loc>
+    <lastmod>2019-07-02T01:35:56.249Z</lastmod>
+    <data>
+        <display>
+        <title>JavaScript中最最基础的知识点</title>
+        <pubTime>2017-06-17T16:00:00.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>JS基础</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/js_sorting_algorithm/</loc>
     <lastmod>2019-07-02T01:35:56.249Z</lastmod>
     <data>
@@ -638,6 +638,28 @@
         <tag>JS基础</tag>
          
         <tag>排序算法</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/css_layout_skills/</loc>
+    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
+    <data>
+        <display>
+        <title>css 布局技巧</title>
+        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
+        
+        <tag>CSS</tag>
+         
+        <tag>布局技巧</tag>
          
          
            
@@ -667,28 +689,6 @@
            
              
               <breadCrumb title="CSS" url="/categories/CSS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/css_layout_skills/</loc>
-    <lastmod>2019-07-02T01:35:56.248Z</lastmod>
-    <data>
-        <display>
-        <title>css 布局技巧</title>
-        <pubTime>2017-07-22T16:00:00.000Z</pubTime>
-        
-        <tag>CSS</tag>
-         
-        <tag>布局技巧</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaScript" url="/categories/JavaScript/"/>
           
         </display>
     </data>
